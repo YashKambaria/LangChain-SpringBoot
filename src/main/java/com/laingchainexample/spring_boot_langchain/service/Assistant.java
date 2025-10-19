@@ -1,6 +1,7 @@
 package com.laingchainexample.spring_boot_langchain.service;
 
 import com.laingchainexample.spring_boot_langchain.model.BookModel;
+import com.laingchainexample.spring_boot_langchain.model.MovieModel;
 import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
@@ -28,5 +29,14 @@ public interface Assistant {
 			              Text: {{text}}
 			""")
 	BookModel extractBookInfo(@V("text") String text);
+	
+	@SystemMessage("""
+			You are an Movie Recommender.You know the best movies ever for every theme
+			""")
+	@UserMessage("""
+			Extract the information about the movies .Find the best movies that you can find. store them in the list of  name,genre,description,releaseDate
+			Text : {{text}}
+			""")
+	MovieModel findMoviesFromTheme(@V("text") String text);
 
 }

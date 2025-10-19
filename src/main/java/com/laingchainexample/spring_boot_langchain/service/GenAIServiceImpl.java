@@ -2,6 +2,7 @@ package com.laingchainexample.spring_boot_langchain.service;
 
 import com.laingchainexample.spring_boot_langchain.dto.ChatRequest;
 import com.laingchainexample.spring_boot_langchain.model.BookModel;
+import com.laingchainexample.spring_boot_langchain.model.MovieModel;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
@@ -34,6 +35,11 @@ public class GenAIServiceImpl implements GenAIService{
 	@Override
 	public BookModel getModelFromText(String question) {
 		return assistant.extractBookInfo(question);
+	}
+	
+	@Override
+	public MovieModel getMoviesList(String question) {
+		return assistant.findMoviesFromTheme(question);
 	}
 	
 	public String getResponseSimple(ChatRequest request) {

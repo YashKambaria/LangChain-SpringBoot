@@ -22,9 +22,9 @@ public class AIConfig {
 	
 	
 	@Bean
-	public Assistant assistant(OpenAiChatModel chatLanguageMode){
+	public Assistant assistant(OpenAiChatModel chatLanguageModel){
 		return AiServices.builder(Assistant.class)
-				.chatModel(chatLanguageMode)
+				.chatModel(chatLanguageModel)
 				.chatMemoryProvider(memoryId-> MessageWindowChatMemory.withMaxMessages(10))
 				.build();
 	}
