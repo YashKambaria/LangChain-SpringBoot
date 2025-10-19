@@ -1,6 +1,7 @@
 package com.laingchainexample.spring_boot_langchain.service;
 
 import com.laingchainexample.spring_boot_langchain.dto.ChatRequest;
+import com.laingchainexample.spring_boot_langchain.model.BookModel;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
@@ -14,6 +15,7 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class GenAIServiceImpl implements GenAIService{
 	
 	@Value("${openAi.key}")
@@ -24,14 +26,16 @@ public class GenAIServiceImpl implements GenAIService{
 	private String baseUrl;
 	
 	private final Assistant assistant;
-	
-	public GenAIServiceImpl(Assistant assistant){
-		this.assistant=assistant;
-	}
 	@Override
 	public String getResponse(ChatRequest request) {
 		return assistant.chat(request.userId(),request.question());
 	}
+	
+	@Override
+	public BookModel getModelFromText(String question) {
+		return assistant.extractBookInfo(question);
+	}
+	
 	public String getResponseSimple(ChatRequest request) {
 		List<ChatMessage> messages=new ArrayList<>();
 		messages.add(SystemMessage.systemMessage("Respond in Hindi"));

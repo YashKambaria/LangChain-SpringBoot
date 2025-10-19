@@ -3,6 +3,7 @@ package com.laingchainexample.spring_boot_langchain.controller;
 
 import com.laingchainexample.spring_boot_langchain.dto.ChatRequest;
 import com.laingchainexample.spring_boot_langchain.dto.ChatResponse;
+import com.laingchainexample.spring_boot_langchain.model.BookModel;
 import com.laingchainexample.spring_boot_langchain.service.GenAIService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class GenerativeController {
 	@PostMapping
 	public ChatResponse getChatResponse(@RequestBody ChatRequest chatRequest){
 	  return new ChatResponse(genAIService.getResponse(chatRequest));
+	}
+	
+	@PostMapping("/book")
+	public BookModel getBookInfo(@RequestBody ChatRequest chatRequest){
+		return genAIService.getModelFromText(chatRequest.question());
 	}
 
 }
