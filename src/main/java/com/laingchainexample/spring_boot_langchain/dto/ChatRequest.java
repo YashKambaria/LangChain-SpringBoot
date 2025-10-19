@@ -1,4 +1,4 @@
 package com.laingchainexample.spring_boot_langchain.dto;
 
-public record ChatRequest(String question) {
+public record ChatRequest(String question,Integer userId) {
 }
