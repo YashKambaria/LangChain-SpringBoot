@@ -18,4 +18,5 @@ class MovieData{
 	private String genre;
 	private String description;
 	private LocalDate releaseDate;
+	private Float IMDB;
 }
