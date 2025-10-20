@@ -34,7 +34,8 @@ public class GenAIServiceImpl implements GenAIService{
 	
 	@Override
 	public BookModel getModelFromText(String question) {
-		return assistant.extractBookInfo(question);
+		var genre = List.of("Science Fiction", "Mystery", "Fantasy", "Romance", "Thriller", "Historical Fiction", "Horror", "Biography", "Self‑Help");
+		return assistant.extractBookInfo(question,genre);
 	}
 	
 	@Override

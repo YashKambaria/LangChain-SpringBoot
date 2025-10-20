@@ -7,6 +7,8 @@ import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 
+import java.util.List;
+
 public interface Assistant {
 
 	@SystemMessage(
@@ -25,10 +27,12 @@ public interface Assistant {
 	@UserMessage("""
 			Extract book information from the text. If the book title, author, or genre is not explicitly mentioned,\s
 			              make your best guess based on the content. All output must be in English.\s
+			              if you do not find the book give your best guess and strictly give response back in json_object.\s
 			              Return JSON with keys: bookName, authorName, description, genre, dateOfPublication.
 			              Text: {{text}}
+			              also the genre in the specified type genre : {{genre}}
 			""")
-	BookModel extractBookInfo(@V("text") String text);
+	BookModel extractBookInfo(@V("text") String text,@V("genre") List<String> genre);
 	
 	@SystemMessage("""
 			You are an Movie Recommender.You know the best movies ever for every theme

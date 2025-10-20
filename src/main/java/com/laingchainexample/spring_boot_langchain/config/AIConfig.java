@@ -35,6 +35,7 @@ public class AIConfig {
 				.apiKey(apiKey)
 				.baseUrl(baseUrl)
 				.modelName(modelName)
+				.responseFormat("json_object")
 				.build();
 	}
 }
